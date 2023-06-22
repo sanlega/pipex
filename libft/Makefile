@@ -6,11 +6,11 @@
 #    By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 19:41:29 by slegaris          #+#    #+#              #
-#    Updated: 2023/06/22 05:08:24 by slegaris         ###   ########.fr        #
+#    Updated: 2023/06/22 06:26:09 by slegaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIB = ar rcs
+ARFLAGS = -rcs
 
 RM = rm -f
 
@@ -62,11 +62,11 @@ INCLUDE = libft.h
 all: $(NAME)
 
 $(NAME): $(OBJ) $(INCLUDE)
-	$(LIB) $(NAME) $(OBJ)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 
 %.o: %.c
 	$(CC) $(CCFLAGS) -c -o $@ $<
-	$(AR) -r $(NAME) $?
+#	$(AR) -r $(NAME) $?
 clean:
 	$(RM) $(OBJ)
 

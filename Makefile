@@ -24,7 +24,7 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJS)
-	$(CC) $(CFLAGS) -L$(LIBFT) -lft -o $@ $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(LIBFT) -lft
 
 $(LIBFT_LIB):
 	make -C $(LIBFT)
