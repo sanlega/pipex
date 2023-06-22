@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 03:02:00 by slegaris          #+#    #+#             */
-/*   Updated: 2023/06/22 03:22:46 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/06/22 03:26:28 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int	main(int argc, char **argv)
 		execlp("wc", "wc", "-l", NULL);
 	}
 
+	// Importante cerrar los FD antes del waitpid
 	close(fd[0]);
 	close(fd[1]);
+
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
-	// close(fd[0]);
-	// close(fd[1]);
 	return (0);
 }
