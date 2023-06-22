@@ -37,3 +37,6 @@ int main()
 ```
 se le puede pasar a la funcion un argumento, el path para que ejecute
 el comando deseado.
+
+A parte del executer, hace falta la funcion que redirecciona los pipes, una funcion
+para splitear el input del comando de entrada "ft_split"
