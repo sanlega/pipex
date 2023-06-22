@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 04:45:56 by slegaris          #+#    #+#             */
-/*   Updated: 2023/06/22 04:55:56 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/06/22 05:56:51 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "libft/libft.h"
 
 void	child_process(int pipefd[2], char *command, int mode);
-void	handle_pipe(char *command1, char *command2);
+void	handle_pipe(char *file1, char *command1, char *command2, char *file2);
 char	**ft_split(char const *s, char c);
 
 #endif
