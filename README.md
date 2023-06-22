@@ -37,3 +37,11 @@ int main()
 ```
 se le puede pasar a la funcion un argumento, el path para que ejecute
 el comando deseado.
+
+# PATHS:
+
+execve recibe los Path de este manera:
+
+- /bin/ls -la
+
+Para saber donde se encuentran los comandos para probar se puede usar "which <nombre comando>"

@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/06/22 05:56:32 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/06/22 22:01:35 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	child_process(int pipefd[2], char *command, int mode)
 		dup2(pipefd[0], STDIN_FILENO);
 	close(pipefd[0]);
 	close(pipefd[1]);
-	execve(args[0], args, NULL);  // asumimos que las variables de entorno existentes están bien
+	execve(args[0], args, NULL);
 	perror("execve");  // Si execve retorna, error
 	exit(1);
 }
