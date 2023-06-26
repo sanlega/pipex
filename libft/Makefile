@@ -6,7 +6,7 @@
 #    By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 19:41:29 by slegaris          #+#    #+#              #
-#    Updated: 2023/06/22 06:26:09 by slegaris         ###   ########.fr        #
+#    Updated: 2023/06/26 19:10:13 by slegaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,16 @@ SRC =	ft_strlen.c\
 	ft_strtrim.c\
 	ft_itoa.c\
 	ft_strmapi.c\
-	ft_split.c
+	ft_split.c\
+	ft_countnbr_p.c\
+	ft_printf.c\
+	ft_putchar_p.c\
+	ft_putnbr_p.c\
+	ft_putnbr_unsg_p.c\
+	ft_putnbrhex_mayus_p.c\
+	ft_putnbrhex_minus_p.c\
+	ft_putptr_p.c\
+	ft_putstr_p.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -66,7 +75,6 @@ $(NAME): $(OBJ) $(INCLUDE)
 
 %.o: %.c
 	$(CC) $(CCFLAGS) -c -o $@ $<
-#	$(AR) -r $(NAME) $?
 clean:
 	$(RM) $(OBJ)
 

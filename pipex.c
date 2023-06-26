@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/06/22 22:01:35 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:13:33 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,12 @@ void	handle_pipe(char *file1, char *command1, char *command2, char *file2)
 
 int	main(int argc, char **argv)
 {
+	char *error;
+
+	error = "Uso: ./pipex archivo1 comando1 comando2 archivo2";
 	if (argc != 5)
 	{
-		write(2, "Uso: ./pipex archivo1 comando1 comando2 archivo2\n", 48);
+		ft_printf("%s\n", error);
 		return (1);
 	}
 	handle_pipe(argv[1], argv[2], argv[3], argv[4]);
