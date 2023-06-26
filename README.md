@@ -45,3 +45,7 @@ execve recibe los Path de este manera:
 - /bin/ls -la
 
 Para saber donde se encuentran los comandos para probar se puede usar "which <nombre comando>"
+
+ERRORES:
+- El programa pilla los comandos con y sin el path absoluto pero no permite añadir el resto del comando al executer.
+- Los exitcodes y errores no están del todo bien
