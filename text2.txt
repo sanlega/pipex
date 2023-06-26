@@ -1,14 +1,1 @@
-Makefile
-README.md
-exec2.c
-exectest.c
-ft_env.c
-ft_env.o
-libft
-pipex
-pipex.c
-pipex.h
-pipex.o
-test.c
-text.txt
-text2.txt
+       8
