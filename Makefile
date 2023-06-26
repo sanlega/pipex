@@ -6,13 +6,15 @@
 #    By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/22 04:46:35 by slegaris          #+#    #+#              #
-#    Updated: 2023/06/22 04:46:46 by slegaris         ###   ########.fr        #
+#    Updated: 2023/06/26 20:06:38 by slegaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-SRCS = pipex.c
+SRCS = pipex.c\
+	   ft_env.c
+
 OBJS = $(SRCS:.c=.o)
 
 LIBFT = libft
