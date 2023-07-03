@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:58:37 by slegaris          #+#    #+#             */
-/*   Updated: 2023/06/26 19:05:30 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:39:02 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int	ft_putnbrhex_mayus_p(int n)
 	count = 0;
 	base = "0123456789ABCDEF";
 	nbr = (unsigned int)n;
-	count = ft_putnbr_base_p(n, base);
+	count = ft_putnbr_base_p(nbr, base);
 	return (count);
 }
