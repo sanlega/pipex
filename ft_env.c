@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/06/26 22:06:42 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/07/06 02:06:42 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_check_path(char *path_var, char *cmd)
 		abs_path = ft_strjoin(path_with_slash, cmd);
 		free(path);
 		free(path_with_slash);
-		if (access(abs_path, X_OK) == 0)
+		if (access(abs_path, F_OK) == 0)
 			return (abs_path);
 		free(abs_path);
 		path_var = path_end + 1;
