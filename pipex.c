@@ -44,7 +44,7 @@ void	execute_child_process(int fd, int *pipefd, char *command, int mode, char **
 	if (!cmd_path)
 	{
 		perror("Command not found");
-		exit(1);
+		exit(errno);
 	}
 	if (mode)
 		dup2(fd, STDOUT_FILENO);
