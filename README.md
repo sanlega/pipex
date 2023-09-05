@@ -49,3 +49,5 @@ Para saber donde se encuentran los comandos para probar se puede usar "which <no
 ERRORES:
 - El programa pilla los comandos con y sin el path absoluto pero no permite añadir el resto del comando al executer.
 - Los exitcodes y errores no están del todo bien
+
+Añadir el fd y el pipe como variables en la funciona del fork
