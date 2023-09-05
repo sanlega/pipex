@@ -36,7 +36,7 @@ void	init_fds(char *file1, char *file2, int *fd1, int *fd2)
 	if (*fd1 < 0 || *fd2 < 0)
 	{
 		perror("open");
-		exit(1);
+		exit(errno);
 	}
 }
 
@@ -45,7 +45,7 @@ void	init_pipe(int *pipefd)
 	if (pipe(pipefd) == -1)
 	{
 		perror("pipe");
-		exit(1);
+		exit(errno);
 	}
 }
 
@@ -57,7 +57,7 @@ int	process_fork(void)
 	if (pid < 0)
 	{
 		perror("fork");
-		exit(1);
+		exit(errno);
 	}
 	return (pid);
 }
