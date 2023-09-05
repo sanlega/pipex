@@ -26,7 +26,7 @@ void	child_process(int pipefd[2], char *command, int mode)
 	execve(args[0], args, NULL);
 	free(args);
 	perror("execve");
-	exit(1);
+	exit(errno);
 }
 
 void	init_fds(char *file1, char *file2, int *fd1, int *fd2)
