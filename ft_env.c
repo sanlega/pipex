@@ -6,11 +6,10 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/08 05:33:22 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/08 07:25:02 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "pipex.h"
 
 char	*ft_check_path(char *path_var, char *cmd, char *command)

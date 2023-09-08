@@ -6,15 +6,10 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/08 04:06:57 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/08 07:24:42 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <stdio.h>
 #include "pipex.h"
 
 void	handle_child_process(int fd, int *pipefd, char *command, int mode, char **env)

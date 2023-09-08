@@ -49,6 +49,5 @@ Para saber donde se encuentran los comandos para probar se puede usar "which <no
 ERRORES:
 <!-- - El programa pilla los comandos con y sin el path absoluto pero no permite añadir el resto del comando al executer. -->
 - Los exitcodes y errores no están del todo bien
-- Con un commando puesto de esta forma: /./cat , por ejemplo, el comportamiento de bash es que no lo ejecuta pero mi programa le añade el path del enviorement y lo ejecuta, por ejemplo /bin/./cat que sería una forma válida de ejecutarlo
 
 Añadir el fd y el pipe como variables en la funciona del fork

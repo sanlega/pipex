@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 04:45:56 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/08 05:34:26 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/08 07:24:28 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdio.h>
 # include "libft/libft.h"
 # include <errno.h>
-
 
 void	child_process(int pipefd[2], char *command, int mode, char **env);
 void	handle_pipe(char **argv, char **envp);
