@@ -1,4 +1,5 @@
 README.md
+*.o
 tests
 text.txt
 out.txt
