@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/08/15 15:34:29 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/08 04:06:57 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 #include <stdio.h>
 #include "pipex.h"
 
-void	handle_child_process(int fd, int *pipefd, char *command, int mode)
+void	handle_child_process(int fd, int *pipefd, char *command, int mode, char **env)
 {
 	if (mode)
 		dup2(fd, STDOUT_FILENO);
 	else
 		dup2(fd, STDIN_FILENO);
-	child_process(pipefd, command, mode);
+	child_process(pipefd, command, mode, env);
 }
 
 void	handle_parent_process(int *pipefd, int fd1, int fd2, int pid1, int pid2)
@@ -50,7 +50,7 @@ void	execute_child_process(int fd, int *pipefd, char *command, int mode, char **
 		dup2(fd, STDOUT_FILENO);
 	else
 		dup2(fd, STDIN_FILENO);
-	child_process(pipefd, cmd_path, mode);
+	child_process(pipefd, cmd_path, mode, envp);
 	free(cmd_path);
 }
 
