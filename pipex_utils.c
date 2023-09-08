@@ -6,11 +6,12 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 23:52:26 by slegaris          #+#    #+#             */
-/*   Updated: 2023/06/26 23:53:15 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/08 04:49:00 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <errno.h>
 
 void	ft_child_process(int pipefd[2], char *command, int mode)
 {
@@ -25,7 +26,7 @@ void	ft_child_process(int pipefd[2], char *command, int mode)
 	close(pipefd[1]);
 	execve(args[0], args, NULL);
 	perror("execve");
-	exit(1);
+	exit(errno);
 }
 
 void	ft_init_fds(char *file1, char *file2, int *fd1, int *fd2)
@@ -35,7 +36,7 @@ void	ft_init_fds(char *file1, char *file2, int *fd1, int *fd2)
 	if (*fd1 < 0 || *fd2 < 0)
 	{
 		perror("open");
-		exit(1);
+		exit(errno);
 	}
 }
 
@@ -44,6 +45,6 @@ void	ft_init_pipe(int *pipefd)
 	if (pipe(pipefd) == -1)
 	{
 		perror("pipe");
-		exit(1);
+		exit(errno);
 	}
 }

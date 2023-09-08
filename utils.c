@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:32:09 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/08 04:04:28 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/08 05:34:05 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,10 @@ int	process_fork(void)
 		exit(errno);
 	}
 	return (pid);
+}
+
+void	dotcomma_error(char *cmd)
+{
+	perror(cmd);
+	exit(errno);
 }

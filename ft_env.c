@@ -6,13 +6,14 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/08 04:24:56 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/08 05:33:22 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include "pipex.h"
 
-char	*ft_check_path(char *path_var, char *cmd)
+char	*ft_check_path(char *path_var, char *cmd, char *command)
 {
 	char	*path;
 	char	*path_end;
@@ -20,18 +21,27 @@ char	*ft_check_path(char *path_var, char *cmd)
 	char	*path_with_slash;
 
 	path_end = ft_strchr(path_var, ':');
-	while (path_end)
+	if (ft_isalnum(command[0]) > 0)
+		while (path_end)
+		{
+			path = ft_substr(path_var, 0, path_end - path_var);
+			path_with_slash = ft_strjoin(path, "/");
+			abs_path = ft_strjoin(path_with_slash, cmd);
+			free(path);
+			free(path_with_slash);
+			if (access(abs_path, F_OK) == 0)
+				return (abs_path);
+			free(abs_path);
+			path_var = path_end + 1;
+			path_end = ft_strchr(path_var, ':');
+		}
+	if (command[0] == '.' && command[1] == '/')
 	{
-		path = ft_substr(path_var, 0, path_end - path_var);
-		path_with_slash = ft_strjoin(path, "/");
-		abs_path = ft_strjoin(path_with_slash, cmd);
-		free(path);
-		free(path_with_slash);
-		if (access(abs_path, F_OK) == 0)
-			return (abs_path);
-		free(abs_path);
-		path_var = path_end + 1;
-		path_end = ft_strchr(path_var, ':');
+		path = ft_substr(cmd, 2, ft_strlen(cmd));
+		if (access(command, F_OK) == -1)
+			dotcomma_error(path);
+		else;
+			return (cmd);
 	}
 	return (NULL);
 }
@@ -51,21 +61,21 @@ char	*ft_check_command_path(char *cmd, char **cmd_parts, char **envp)
 {
 	char	*result;
 
-	result = ft_check_path(ft_get_path_var(envp), cmd_parts[0]);
-	if (cmd[0] != '/')
-	{
+	result = ft_check_path(ft_get_path_var(envp), cmd_parts[0], cmd);
+	if (cmd[0] == '/')
+		result = NULL;
+	if (cmd[0] == '.' && cmd[1] == '/')
+		result = cmd;
+	else
 		if (result)
 		{
 			free(cmd_parts[0]);
 			cmd_parts[0] = result;
 		}
-		else if (access(cmd_parts[0], X_OK) == 0)
+		if (access(cmd_parts[0], X_OK) == 0)
 			result = cmd;
 		else
 			result = NULL;
-	}
-	else
-		result = NULL;
 	return (result);
 }
 
