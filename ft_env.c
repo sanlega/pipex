@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/07/06 02:06:42 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/08 04:24:56 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,18 @@ char	*ft_check_command_path(char *cmd, char **cmd_parts, char **envp)
 	char	*result;
 
 	result = ft_check_path(ft_get_path_var(envp), cmd_parts[0]);
-	if (result)
+	if (cmd[0] != '/')
 	{
-		free(cmd_parts[0]);
-		cmd_parts[0] = result;
+		if (result)
+		{
+			free(cmd_parts[0]);
+			cmd_parts[0] = result;
+		}
+		else if (access(cmd_parts[0], X_OK) == 0)
+			result = cmd;
+		else
+			result = NULL;
 	}
-	else if (access(cmd_parts[0], X_OK) == 0)
-		result = cmd;
 	else
 		result = NULL;
 	return (result);
