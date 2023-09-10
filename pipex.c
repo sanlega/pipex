@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/08 07:24:42 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/10 19:39:44 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	handle_child_process(int fd, int *pipefd, char *command, int mode, char **e
 	child_process(pipefd, command, mode, env);
 }
 
-void	handle_parent_process(int *pipefd, int fd1, int fd2, int pid1, int pid2)
+void	handle_parent_process(int *pipefd, int *fds, int pid1, int pid2)
 {
 	close(pipefd[0]);
 	close(pipefd[1]);
-	close(fd1);
-	close(fd2);
+	close(fds[0]);
+	close(fds[1]);
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
 }
@@ -34,7 +34,9 @@ void	handle_parent_process(int *pipefd, int fd1, int fd2, int pid1, int pid2)
 void	execute_child_process(int fd, int *pipefd, char *command, int mode, char **envp)
 {
 	char	*cmd_path;
+	int	mode;
 
+	mode = 1;
 	cmd_path = ft_get_command_path(envp, command);
 	if (!cmd_path)
 	{
@@ -42,7 +44,10 @@ void	execute_child_process(int fd, int *pipefd, char *command, int mode, char **
 		exit(errno);
 	}
 	if (mode)
+	{
 		dup2(fd, STDOUT_FILENO);
+		mode = 0;
+	}
 	else
 		dup2(fd, STDIN_FILENO);
 	child_process(pipefd, cmd_path, mode, envp);
@@ -52,20 +57,18 @@ void	execute_child_process(int fd, int *pipefd, char *command, int mode, char **
 void	handle_pipe(char **argv, char **envp)
 {
 	int		pipefd[2];
-	int		pid1;
-	int		pid2;
-	int		fd1;
-	int		fd2;
+	int		pids[2];
+	int		fds[2];
 
-	init_fds(argv[1], argv[4], &fd1, &fd2);
+	init_fds(argv[1], argv[4], fds);
 	init_pipe(pipefd);
-	pid1 = process_fork();
-	if (pid1 == 0)
-		execute_child_process(fd1, pipefd, argv[2], 0, envp);
-	pid2 = process_fork();
-	if (pid2 == 0)
-		execute_child_process(fd2, pipefd, argv[3], 1, envp);
-	handle_parent_process(pipefd, fd1, fd2, pid1, pid2);
+	pids[0] = process_fork();
+	if (pids[0] == 0)
+		execute_child_process(fds[0], pipefd, argv[2], 0, envp);
+	pids[1] = process_fork();
+	if (pids[1] == 0)
+		execute_child_process(fds[1], pipefd, argv[3], 1, envp);
+	handle_parent_process(pipefd, fds, pids[0], pids[1]);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -79,6 +82,5 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	}
 	handle_pipe(argv, envp);
-	// system("leaks pipex");
 	return (0);
 }

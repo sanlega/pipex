@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 04:45:56 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/08 07:24:28 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/10 19:32:54 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	handle_pipe(char **argv, char **envp);
 char	**ft_split(char const *s, char c);
 char	*ft_check_path(char *path_var, char *cmd, char *command);
 char	*ft_get_command_path(char **envp, char *cmd);
-void	init_fds(char *file1, char *file2, int *fd1, int *fd2);
+void	init_fds(char *file1, char *file2, int *fds);
 void	init_pipe(int *pipefd);
 int		process_fork(void);
 void	dotcomma_error(char *cmd);
