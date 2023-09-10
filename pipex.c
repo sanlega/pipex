@@ -6,7 +6,7 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/10 20:01:00 by sanlega          ###   ########.fr       */
+/*   Updated: 2023/09/10 20:10:33 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ void	execute_child_mode0(int fd, int *pipefd, char *command, char **envp)
 		perror("Command not found");
 		exit(errno);
 	}
-	if (mode)
-		dup2(fd, STDOUT_FILENO);
-	else
-		dup2(fd, STDIN_FILENO);
+	dup2(fd, STDIN_FILENO);
 	child_process(pipefd, cmd_path, mode, envp);
 	free(cmd_path);
 }
@@ -44,10 +41,7 @@ void	execute_child_mode1(int fd, int *pipefd, char *command, char **envp)
 		perror("Command not found");
 		exit(errno);
 	}
-	if (mode)
-		dup2(fd, STDOUT_FILENO);
-	else
-		dup2(fd, STDIN_FILENO);
+	dup2(fd, STDOUT_FILENO);
 	child_process(pipefd, cmd_path, mode, envp);
 	free(cmd_path);
 }

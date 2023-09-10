@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 04:45:56 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/10 20:06:46 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/10 20:23:02 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void	init_pipe(int *pipefd);
 int		process_fork(void);
 void	dotcomma_error(char *cmd);
 void	handle_parent_process(int *pipefd, int *fds, int pid1, int pid2);
+char	*dot_slash_check(char *path, char *cmd, char *command);
 
 #endif

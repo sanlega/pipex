@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/08 07:25:02 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/10 20:22:32 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	*ft_check_path(char *path_var, char *cmd, char *command)
 
 	path_end = ft_strchr(path_var, ':');
 	if (ft_isalnum(command[0]) > 0)
+	{
 		while (path_end)
 		{
 			path = ft_substr(path_var, 0, path_end - path_var);
@@ -34,14 +35,9 @@ char	*ft_check_path(char *path_var, char *cmd, char *command)
 			path_var = path_end + 1;
 			path_end = ft_strchr(path_var, ':');
 		}
-	if (command[0] == '.' && command[1] == '/')
-	{
-		path = ft_substr(cmd, 2, ft_strlen(cmd));
-		if (access(command, F_OK) == -1)
-			dotcomma_error(path);
-		else;
-			return (cmd);
 	}
+	if (command[0] == '.' && command[1] == '/')
+		dot_slash_check(path, cmd, command);
 	return (NULL);
 }
 
@@ -66,6 +62,7 @@ char	*ft_check_command_path(char *cmd, char **cmd_parts, char **envp)
 	if (cmd[0] == '.' && cmd[1] == '/')
 		result = cmd;
 	else
+	{
 		if (result)
 		{
 			free(cmd_parts[0]);
@@ -75,6 +72,7 @@ char	*ft_check_command_path(char *cmd, char **cmd_parts, char **envp)
 			result = cmd;
 		else
 			result = NULL;
+	}
 	return (result);
 }
 
