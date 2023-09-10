@@ -6,7 +6,7 @@
 #    By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/22 04:46:35 by slegaris          #+#    #+#              #
-#    Updated: 2023/08/15 15:36:45 by slegaris         ###   ########.fr        #
+#    Updated: 2023/09/10 20:01:29 by slegaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = pipex
 
 SRCS = pipex.c\
 	   ft_env.c\
-	   utils.c
+	   utils.c\
+	   handlers.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -3,38 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/10 19:39:44 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/10 20:01:00 by sanlega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	handle_child_process(int fd, int *pipefd, char *command, int mode, char **env)
+void	execute_child_mode0(int fd, int *pipefd, char *command, char **envp)
 {
+	int		mode;
+	char	*cmd_path;
+
+	mode = 0;
+	cmd_path = ft_get_command_path(envp, command);
+	if (!cmd_path)
+	{
+		perror("Command not found");
+		exit(errno);
+	}
 	if (mode)
 		dup2(fd, STDOUT_FILENO);
 	else
 		dup2(fd, STDIN_FILENO);
-	child_process(pipefd, command, mode, env);
+	child_process(pipefd, cmd_path, mode, envp);
+	free(cmd_path);
 }
 
-void	handle_parent_process(int *pipefd, int *fds, int pid1, int pid2)
-{
-	close(pipefd[0]);
-	close(pipefd[1]);
-	close(fds[0]);
-	close(fds[1]);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
-}
-
-void	execute_child_process(int fd, int *pipefd, char *command, int mode, char **envp)
+void	execute_child_mode1(int fd, int *pipefd, char *command, char **envp)
 {
 	char	*cmd_path;
-	int	mode;
+	int		mode;
 
 	mode = 1;
 	cmd_path = ft_get_command_path(envp, command);
@@ -44,10 +45,7 @@ void	execute_child_process(int fd, int *pipefd, char *command, int mode, char **
 		exit(errno);
 	}
 	if (mode)
-	{
 		dup2(fd, STDOUT_FILENO);
-		mode = 0;
-	}
 	else
 		dup2(fd, STDIN_FILENO);
 	child_process(pipefd, cmd_path, mode, envp);
@@ -64,10 +62,10 @@ void	handle_pipe(char **argv, char **envp)
 	init_pipe(pipefd);
 	pids[0] = process_fork();
 	if (pids[0] == 0)
-		execute_child_process(fds[0], pipefd, argv[2], 0, envp);
+		execute_child_mode0(fds[0], pipefd, argv[2], envp);
 	pids[1] = process_fork();
 	if (pids[1] == 0)
-		execute_child_process(fds[1], pipefd, argv[3], 1, envp);
+		execute_child_mode1(fds[1], pipefd, argv[3], envp);
 	handle_parent_process(pipefd, fds, pids[0], pids[1]);
 }
 
