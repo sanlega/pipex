@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:32:09 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/10 19:33:21 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:32:49 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,14 @@ void	dotcomma_error(char *cmd)
 {
 	perror(cmd);
 	exit(errno);
+}
+
+int	no_access(char *cmd)
+{
+	if (access(cmd, F_OK) == 0)
+	{
+		perror(cmd);
+		exit(errno);
+	}
+	return (1);
 }

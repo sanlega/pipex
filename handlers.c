@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 19:53:40 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/10 20:27:42 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:27:05 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,38 @@ char	*dot_slash_check(char *path, char *cmd, char *command)
 		dotcomma_error(path);
 	return (cmd);
 }
+
+int	check_access(char *cmd)
+{
+	if (access(cmd, F_OK) == 0)
+		return (0);
+	else
+		return (1);
+}
+
+int is_relative(const char *path)
+{
+	if (ft_strncmp("/", path, 1))
+		return 1;
+	if (ft_strncmp("./", path, 2))
+		return 1;
+	if (ft_strncmp("../", path, 3))
+		return 1;
+	return 0;
+}
+// int	check_enviorement(char **envp)
+// {
+// 	if (ft_strncmp(*envp, "PATH=", 5) == 0)
+// 	{
+// 		return (0);
+// 		printf("No hay PATH.\n");
+// 	}
+// 	else
+// 		return (1);
+// }
+//
+
+
+
+
+

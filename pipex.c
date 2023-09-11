@@ -6,7 +6,7 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/10 20:10:33 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:41:17 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	execute_child_mode0(int fd, int *pipefd, char *command, char **envp)
 {
 	int		mode;
 	char	*cmd_path;
+	// char	**enviorement;
 
 	mode = 0;
 	cmd_path = ft_get_command_path(envp, command);
@@ -25,6 +26,10 @@ void	execute_child_mode0(int fd, int *pipefd, char *command, char **envp)
 		exit(errno);
 	}
 	dup2(fd, STDIN_FILENO);
+	// if (check_enviorement(envp) == 0)
+	// 	enviorement = NULL;
+	// else
+	// 	enviorement = envp;
 	child_process(pipefd, cmd_path, mode, envp);
 	free(cmd_path);
 }

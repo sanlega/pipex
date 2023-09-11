@@ -6,10 +6,11 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/10 20:22:32 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:34:39 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include "pipex.h"
 
 char	*ft_check_path(char *path_var, char *cmd, char *command)
@@ -19,8 +20,11 @@ char	*ft_check_path(char *path_var, char *cmd, char *command)
 	char	*abs_path;
 	char	*path_with_slash;
 
+	path = NULL;
 	path_end = ft_strchr(path_var, ':');
-	if (ft_isalnum(command[0]) > 0)
+	if (is_relative(command))
+		dot_slash_check(path, cmd, command);
+	else
 	{
 		while (path_end)
 		{
@@ -36,8 +40,6 @@ char	*ft_check_path(char *path_var, char *cmd, char *command)
 			path_end = ft_strchr(path_var, ':');
 		}
 	}
-	if (command[0] == '.' && command[1] == '/')
-		dot_slash_check(path, cmd, command);
 	return (NULL);
 }
 
@@ -57,21 +59,27 @@ char	*ft_check_command_path(char *cmd, char **cmd_parts, char **envp)
 	char	*result;
 
 	result = ft_check_path(ft_get_path_var(envp), cmd_parts[0], cmd);
-	if (cmd[0] == '/')
-		result = NULL;
-	if (cmd[0] == '.' && cmd[1] == '/')
+	// if (cmd[0] == '/' && cmd[1] != '/')
+	// {
+	// 	if (check_access(cmd) == 0)
+	// }
+	printf("CMD:%s\n", cmd);
+	if (is_relative(cmd))
 		result = cmd;
 	else
 	{
-		if (result)
+		if (no_access(cmd))
 		{
-			free(cmd_parts[0]);
-			cmd_parts[0] = result;
+			if (result)
+			{
+				free(cmd_parts[0]);
+				cmd_parts[0] = result;
+			}
+			if (access(cmd_parts[0], X_OK) == 0)
+				result = cmd;
+			else
+				result = NULL;
 		}
-		if (access(cmd_parts[0], X_OK) == 0)
-			result = cmd;
-		else
-			result = NULL;
 	}
 	return (result);
 }
