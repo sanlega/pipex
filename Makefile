@@ -6,7 +6,7 @@
 #    By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/22 04:46:35 by slegaris          #+#    #+#              #
-#    Updated: 2023/09/10 20:01:29 by slegaris         ###   ########.fr        #
+#    Updated: 2023/09/15 00:02:34 by slegaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ $(NAME): $(LIBFT_LIB) $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(LIBFT) -lft
 
 $(LIBFT_LIB):
-	make -C $(LIBFT)
+	@ make -C $(LIBFT)
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@

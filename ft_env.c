@@ -6,12 +6,13 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/11 16:34:39 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/14 21:19:43 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "pipex.h"
+#include <stdio.h>
 
 char	*ft_check_path(char *path_var, char *cmd, char *command)
 {
@@ -22,9 +23,9 @@ char	*ft_check_path(char *path_var, char *cmd, char *command)
 
 	path = NULL;
 	path_end = ft_strchr(path_var, ':');
-	if (is_relative(command))
-		dot_slash_check(path, cmd, command);
-	else
+	if (is_absolute(command))
+		return(command);
+	if (is_absolute(cmd) == 0)
 	{
 		while (path_end)
 		{
@@ -58,15 +59,9 @@ char	*ft_check_command_path(char *cmd, char **cmd_parts, char **envp)
 {
 	char	*result;
 
-	result = ft_check_path(ft_get_path_var(envp), cmd_parts[0], cmd);
-	// if (cmd[0] == '/' && cmd[1] != '/')
-	// {
-	// 	if (check_access(cmd) == 0)
-	// }
-	printf("CMD:%s\n", cmd);
-	if (is_relative(cmd))
-		result = cmd;
-	else
+	if(ft_get_path_var(envp) != 0)
+			result = ft_check_path(ft_get_path_var(envp), cmd_parts[0], cmd);
+	if (is_absolute(&cmd[0]) == 0)
 	{
 		if (no_access(cmd))
 		{
@@ -110,7 +105,15 @@ char	*ft_get_command_path(char **envp, char *cmd)
 	char	**cmd_parts;
 
 	cmd_parts = ft_split(cmd, ' ');
-	result = ft_check_command_path(cmd, cmd_parts, envp);
+	if (is_absolute(cmd))
+		result = cmd;
+	else
+	{
+		if (!*envp)
+			result = ft_strjoin("./", cmd);
+		else
+			result = ft_check_command_path(cmd, cmd_parts, envp);
+	}
 	if (result)
 		result = ft_join_cmd_and_args(cmd_parts);
 	free(cmd_parts);

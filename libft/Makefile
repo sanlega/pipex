@@ -6,7 +6,7 @@
 #    By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 19:41:29 by slegaris          #+#    #+#              #
-#    Updated: 2023/06/26 19:10:13 by slegaris         ###   ########.fr        #
+#    Updated: 2023/09/14 17:55:44 by slegaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,15 +71,15 @@ INCLUDE = libft.h
 all: $(NAME)
 
 $(NAME): $(OBJ) $(INCLUDE)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
+	@ $(AR) $(ARFLAGS) $(NAME) $(OBJ)
 
 %.o: %.c
-	$(CC) $(CCFLAGS) -c -o $@ $<
+	@ $(CC) $(CCFLAGS) -c -o $@ $<
 clean:
-	$(RM) $(OBJ)
+	@ $(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	@ $(RM) $(NAME)
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 04:45:56 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/11 16:34:34 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/14 20:51:20 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	dotcomma_error(char *cmd);
 void	handle_parent_process(int *pipefd, int *fds, int pid1, int pid2);
 char	*dot_slash_check(char *path, char *cmd, char *command);
 int		check_enviorement(char **envp);
-int		is_relative(const char *path);
+int		is_absolute(char *path);
 int		no_access(char *cmd);
 
 #endif
