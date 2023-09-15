@@ -6,7 +6,7 @@
 #    By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 19:41:29 by slegaris          #+#    #+#              #
-#    Updated: 2023/09/14 17:55:44 by slegaris         ###   ########.fr        #
+#    Updated: 2023/09/15 03:07:18 by slegaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ $(NAME): $(OBJ) $(INCLUDE)
 %.o: %.c
 	@ $(CC) $(CCFLAGS) -c -o $@ $<
 clean:
-	@ $(RM) $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
 	@ $(RM) $(NAME)
