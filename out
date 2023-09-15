@@ -1,1 +1,14 @@
-Uso: ./pipex archivo1 comando1 comando2 archivo2
+Makefile
+README.md
+ft_env.c
+ft_env.o
+handlers.c
+handlers.o
+libft
+out
+pipex
+pipex.c
+pipex.h
+pipex.o
+utils.c
+utils.o
