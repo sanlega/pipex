@@ -6,7 +6,7 @@
 #    By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/22 04:46:35 by slegaris          #+#    #+#              #
-#    Updated: 2023/09/15 03:50:23 by slegaris         ###   ########.fr        #
+#    Updated: 2023/09/16 15:57:05 by slegaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = pipex
 SRCS = pipex.c\
 	   ft_env.c\
 	   utils.c\
-	   handlers.c
+	   handlers.c\
+	   childs.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -23,7 +24,7 @@ LIBFT = libft
 LIBFT_LIB = $(LIBFT)/libft.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 all: $(NAME)
 

@@ -6,28 +6,11 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:32:09 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/15 04:09:42 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:54:32 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	child_process(int pipefd[2], char *command, int mode, char **env)
-{
-	char	**args;
-
-	args = ft_split(command, ' ');
-	if (mode == 0)
-		dup2(pipefd[1], STDOUT_FILENO);
-	else
-		dup2(pipefd[0], STDIN_FILENO);
-	close(pipefd[0]);
-	close(pipefd[1]);
-	execve(args[0], args, env);
-	free(args);
-	perror("execve");
-	exit(errno);
-}
 
 void	init_fds(char *file1, char *file2, int *fds)
 {

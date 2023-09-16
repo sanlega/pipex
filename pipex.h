@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 04:45:56 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/14 20:51:20 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:50:37 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ char	*dot_slash_check(char *path, char *cmd, char *command);
 int		check_enviorement(char **envp);
 int		is_absolute(char *path);
 int		no_access(char *cmd);
+char	*parse_path(char *path_var, char *cmd, char *path_end);
 
 #endif

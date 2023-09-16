@@ -6,7 +6,7 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/16 15:31:09 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:53:15 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,19 @@
 
 char	*ft_check_path(char *path_var, char *cmd, char *command)
 {
-	char	*path;
 	char	*path_end;
 	char	*abs_path;
-	char	*path_with_slash;
 
-	path = NULL;
 	path_end = ft_strchr(path_var, ':');
 	if (!cmd)
 		return (NULL);
 	if (is_absolute(command))
-		return(command);
+		return (command);
 	if (is_absolute(cmd) == 0)
 	{
 		while (path_end)
 		{
-			path = ft_substr(path_var, 0, path_end - path_var);
-			path_with_slash = ft_strjoin(path, "/");
-			abs_path = ft_strjoin(path_with_slash, cmd);
-			free(path);
-			free(path_with_slash);
+			abs_path = parse_path(path_var, cmd, path_end);
 			if (access(abs_path, F_OK) == 0)
 				return (abs_path);
 			free(abs_path);
@@ -61,7 +54,7 @@ char	*ft_check_command_path(char *cmd, char **cmd_parts, char **envp)
 {
 	char	*result;
 
-	if(ft_get_path_var(envp) != 0)
+	if (ft_get_path_var(envp) != 0)
 			result = ft_check_path(ft_get_path_var(envp), cmd_parts[0], cmd);
 	if (is_absolute(&cmd[0]) == 0)
 	{
