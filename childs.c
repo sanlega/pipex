@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:54:12 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/16 15:54:25 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/17 00:31:32 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	child_process(int pipefd[2], char *command, int mode, char **env)
 	close(pipefd[0]);
 	close(pipefd[1]);
 	execve(args[0], args, env);
-	free(args);
+	flyingfree(args);
 	perror("execve");
 	exit(errno);
 }

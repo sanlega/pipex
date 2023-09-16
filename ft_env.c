@@ -6,7 +6,7 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/16 15:53:15 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/17 00:22:10 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ char	*ft_join_cmd_and_args(char **cmd_parts)
 	i++;
 	while (cmd_parts[i])
 	{
-		tmp = ft_strjoin(command_with_args, " ");
+		tmp = esejoint(command_with_args, " ");
 		free(command_with_args);
-		command_with_args = ft_strjoin(tmp, cmd_parts[i]);
+		command_with_args = esejoint(tmp, cmd_parts[i]);
 		free(tmp);
 		i++;
 	}
@@ -99,18 +99,18 @@ char	*ft_get_command_path(char **envp, char *cmd)
 	char	*result;
 	char	**cmd_parts;
 
-	cmd_parts = ft_split(cmd, ' ');
+	cmd_parts = esesplit(cmd, ' ');
 	if (is_absolute(cmd))
 		result = cmd;
 	else
 	{
 		if (!*envp)
-			result = ft_strjoin("./", cmd);
+			result = esejoint("./", cmd);
 		else
 			result = ft_check_command_path(cmd, cmd_parts, envp);
 	}
 	if (result)
 		result = ft_join_cmd_and_args(cmd_parts);
-	free(cmd_parts);
+	flyingfree(cmd_parts);
 	return (result);
 }

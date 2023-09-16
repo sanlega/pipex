@@ -6,7 +6,7 @@
 #    By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/22 04:46:35 by slegaris          #+#    #+#              #
-#    Updated: 2023/09/16 15:57:53 by slegaris         ###   ########.fr        #
+#    Updated: 2023/09/17 00:29:22 by slegaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRCS = pipex.c\
 	   ft_env.c\
 	   utils.c\
 	   handlers.c\
-	   childs.c
+	   childs.c\
+	   prot_mal.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 04:45:56 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/16 15:50:37 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/17 00:24:44 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,9 @@ int		check_enviorement(char **envp);
 int		is_absolute(char *path);
 int		no_access(char *cmd);
 char	*parse_path(char *path_var, char *cmd, char *path_end);
+void	flyingfree(char **arr);
+char	*esejoint(char *str1, char *str2);
+char	**esesplit(char *str, char c);
+char	*esesubstr(char *s, int start, size_t len);
 
 #endif
