@@ -6,11 +6,12 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/14 23:59:04 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:32:36 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include "libft/libft.h"
 
 void	execute_child_mode0(int fd, int *pipefd, char *command, char **envp)
 {
@@ -21,7 +22,8 @@ void	execute_child_mode0(int fd, int *pipefd, char *command, char **envp)
 	cmd_path = ft_get_command_path(envp, command);
 	if (!cmd_path)
 	{
-		perror("Command not found");
+		ft_putstr_fd("Command not found: ", STDERR_FILENO);
+		ft_putendl_fd(command, 2);
 		exit(errno);
 	}
 	dup2(fd, STDIN_FILENO);
@@ -38,7 +40,8 @@ void	execute_child_mode1(int fd, int *pipefd, char *command, char **envp)
 	cmd_path = ft_get_command_path(envp, command);
 	if (!cmd_path)
 	{
-		perror("Command not found");
+		ft_putstr_fd("Command not found: ", STDERR_FILENO);
+		ft_putendl_fd(command, 2);
 		exit(errno);
 	}
 	dup2(fd, STDOUT_FILENO);

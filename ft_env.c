@@ -6,7 +6,7 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/15 04:24:31 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:31:09 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*ft_check_path(char *path_var, char *cmd, char *command)
 
 	path = NULL;
 	path_end = ft_strchr(path_var, ':');
+	if (!cmd)
+		return (NULL);
 	if (is_absolute(command))
 		return(command);
 	if (is_absolute(cmd) == 0)
