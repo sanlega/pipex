@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 00:11:51 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/17 00:29:26 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/20 00:12:26 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	flyingfree(char **arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (arr[i] != 0)
@@ -29,7 +29,7 @@ void	flyingfree(char **arr)
 
 char	*esejoint(char *str1, char *str2)
 {
-	char *result;
+	char	*result;
 
 	result = ft_strjoin(str1, str2);
 	if (!result)
@@ -42,7 +42,7 @@ char	*esejoint(char *str1, char *str2)
 
 char	**esesplit(char *str, char c)
 {
-	char **result;
+	char	**result;
 
 	result = ft_split(str, c);
 	if (!result)
