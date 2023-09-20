@@ -6,7 +6,7 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/17 00:22:10 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/09/20 23:58:32 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,6 @@ char	*ft_get_command_path(char **envp, char *cmd)
 	}
 	if (result)
 		result = ft_join_cmd_and_args(cmd_parts);
-	flyingfree(cmd_parts);
+	free(cmd_parts);
 	return (result);
 }
