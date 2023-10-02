@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 04:45:56 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/21 00:00:46 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:40:23 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ char	*parse_path(char *path_var, char *cmd, char *path_end);
 char	*esejoint(char *str1, char *str2);
 char	**esesplit(char *str, char c);
 char	*esesubstr(char *s, int start, size_t len);
+void	ft_error(char *str);
 
 #endif

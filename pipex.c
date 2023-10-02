@@ -6,7 +6,7 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/21 00:04:44 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:41:29 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	execute_child_mode0(int fd, int *pipefd, char *command, char **envp)
 		ft_putendl_fd(command, 2);
 		exit(errno);
 	}
+	if(fd < 0)
+		ft_error("open");
 	dup2(fd, STDIN_FILENO);
 	child_process(pipefd, cmd_path, mode, envp);
 	free(cmd_path);
@@ -44,6 +46,8 @@ void	execute_child_mode1(int fd, int *pipefd, char *command, char **envp)
 		ft_putendl_fd(command, 2);
 		exit(errno);
 	}
+	if(fd < 0)
+		ft_error("open");
 	dup2(fd, STDOUT_FILENO);
 	child_process(pipefd, cmd_path, mode, envp);
 	free(cmd_path);
@@ -62,7 +66,9 @@ void	handle_pipe(char **argv, char **envp)
 		execute_child_mode0(fds[0], pipefd, argv[2], envp);
 	pids[1] = process_fork();
 	if (pids[1] == 0)
+	{
 		execute_child_mode1(fds[1], pipefd, argv[3], envp);
+	}
 	handle_parent_process(pipefd, fds, pids[0], pids[1]);
 }
 

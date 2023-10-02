@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 19:53:40 by slegaris          #+#    #+#             */
-/*   Updated: 2023/09/17 00:26:11 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:40:01 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,10 @@ char	*parse_path(char *path_var, char *cmd, char *path_end)
 	free(path);
 	free(path_with_slash);
 	return (abs_path);
+}
+
+void	ft_error(char *str)
+{
+	perror(str);
+	exit(errno);
 }
