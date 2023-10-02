@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:32:09 by slegaris          #+#    #+#             */
-/*   Updated: 2023/10/02 19:38:13 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:44:42 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ void	init_fds(char *file1, char *file2, int *fds)
 {
 	fds[0] = open(file1, O_RDONLY);
 	fds[1] = open(file2, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	//
-	// if (fds[0] < 0/*  || fds[1] < 0 */)
-	// {
-	// 	perror("open");
-	// 	exit(errno);
-	// }
 }
 
 void	init_pipe(int *pipefd)

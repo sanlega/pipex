@@ -6,7 +6,7 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/10/02 19:41:29 by slegaris         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:45:20 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	execute_child_mode0(int fd, int *pipefd, char *command, char **envp)
 		ft_putendl_fd(command, 2);
 		exit(errno);
 	}
-	if(fd < 0)
+	if (fd < 0)
 		ft_error("open");
 	dup2(fd, STDIN_FILENO);
 	child_process(pipefd, cmd_path, mode, envp);
@@ -46,7 +46,7 @@ void	execute_child_mode1(int fd, int *pipefd, char *command, char **envp)
 		ft_putendl_fd(command, 2);
 		exit(errno);
 	}
-	if(fd < 0)
+	if (fd < 0)
 		ft_error("open");
 	dup2(fd, STDOUT_FILENO);
 	child_process(pipefd, cmd_path, mode, envp);
