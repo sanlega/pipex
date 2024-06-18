@@ -6,7 +6,7 @@
 #    By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/22 04:46:35 by slegaris          #+#    #+#              #
-#    Updated: 2023/09/21 00:03:05 by slegaris         ###   ########.fr        #
+#    Updated: 2024/06/18 22:24:25 by slegaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,9 @@ clean:
 fclean: clean
 	make -C $(LIBFT) fclean
 	rm -f $(NAME)
+
+bonus: CFLAGS += -D BONUS=1
+bonus: $(NAME)
 
 re: fclean all
 

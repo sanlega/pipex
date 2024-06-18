@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 04:45:56 by slegaris          #+#    #+#             */
-/*   Updated: 2023/10/02 19:40:23 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/18 22:03:01 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <stdio.h>
 # include "libft/libft.h"
 # include <errno.h>
+
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
 void	child_process(int pipefd[2], char *command, int mode, char **env);
 void	handle_pipe(char **argv, char **envp);

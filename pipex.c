@@ -6,12 +6,15 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2023/10/02 19:45:20 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/18 22:30:44 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft/libft.h"
+
+
+#include <stdio.h>
 
 void	execute_child_mode0(int fd, int *pipefd, char *command, char **envp)
 {
@@ -77,8 +80,9 @@ int	main(int argc, char **argv, char **envp)
 	char	*error;
 
 	error = "Uso: ./pipex archivo1 comando1 comando2 archivo2";
-	if (argc != 5)
+	if (argc != 5 || (argc != 6 && BONUS != 1 && ft_strncmp(argv[1], "here_doc", 9) != 0))
 	{
+        printf("BONUS = %d", BONUS);
 		ft_printf("%s\n", error);
 		return (1);
 	}

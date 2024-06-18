@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:32:09 by slegaris          #+#    #+#             */
-/*   Updated: 2023/10/02 19:44:42 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/18 22:09:56 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	init_fds(char *file1, char *file2, int *fds)
 {
+    /* if (BONUS = 1) */
+    /* { */
+    /*     str = get_next_line(0) */
+    /*     doc */
+    /* } */
 	fds[0] = open(file1, O_RDONLY);
 	fds[1] = open(file2, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 }
