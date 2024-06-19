@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 00:09:11 by slegaris          #+#    #+#             */
-/*   Updated: 2023/06/26 19:02:11 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/19 21:06:30 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+# define BUFFER_SIZE 100
 
 void				ft_bzero(void *s, size_t n);
 void				ft_putchar_fd(char c, int fd);
@@ -74,5 +76,14 @@ int					ft_putnbr_p(int n);
 int					ft_putnbr_unsg_p(unsigned int n);
 int					ft_putptr_p(void *ptr);
 int					ft_printf(char const *format, ...);
+char				*get_next_line(int fd);
+char				*ft_read_to_left_str(int fd, char *left_str);
+char				*ft_get_line(char *left_str);
+char				*ft_new_left_str(char *left_str);
+size_t				ft_line_length(const char *str);
+size_t	ft_strlen_gnl(char *s);
+char	*ft_strchr_gnl(char *s, int c);
+char	*ft_strjoin_gnl(char *left_str, char *buff);
+
 
 #endif

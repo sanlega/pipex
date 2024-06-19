@@ -6,21 +6,42 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:32:09 by slegaris          #+#    #+#             */
-/*   Updated: 2024/06/18 22:09:56 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:31:36 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	init_fds(char *file1, char *file2, int *fds)
+void	init_fds(char *file1, char *file2, int *fds, char **av)
 {
-    /* if (BONUS = 1) */
-    /* { */
-    /*     str = get_next_line(0) */
-    /*     doc */
-    /* } */
-	fds[0] = open(file1, O_RDONLY);
-	fds[1] = open(file2, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    char    *line;
+
+    if (BONUS == 1)
+    {
+        fds[0] = open(".heredoc", O_WRONLY | O_CREAT | O_APPEND, 0644);
+        printf("ARCHIVO: %s\n", av[5]);
+        while(1)
+        {
+            ft_printf("HERE_DOC>> ");
+            line = get_next_line(0); 
+            if((ft_strncmp(line, av[2], ft_strlen(av[2])) == 0 && ft_strlen(line) -1 == ft_strlen(av[2])) || line == NULL)
+            {
+                if(line != NULL)
+                    free(line);
+                break;
+            }
+            ft_putstr_fd(line, fds[0]);
+            free(line);
+        }
+        close(fds[0]);
+        fds[0] = open(".heredoc", O_RDONLY);
+	    fds[1] = open(av[5], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    }
+    else
+    {
+        fds[0] = open(file1, O_RDONLY);
+	    fds[1] = open(file2, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    }
 }
 
 void	init_pipe(int *pipefd)

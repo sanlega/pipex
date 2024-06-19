@@ -6,14 +6,14 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 01:11:25 by slegaris          #+#    #+#             */
-/*   Updated: 2023/03/08 11:12:58 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:56:32 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
-	{	
+	{
 		c = c + 32;
 		return (c);
 	}

@@ -6,7 +6,7 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2024/06/18 22:30:44 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:28:08 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,26 @@ void	handle_pipe(char **argv, char **envp)
 	int		pids[2];
 	int		fds[2];
 
-	init_fds(argv[1], argv[4], fds);
+	init_fds(argv[1], argv[4], fds, argv);
+
+    printf("here: %d", fds[0]);
+
 	init_pipe(pipefd);
 	pids[0] = process_fork();
 	if (pids[0] == 0)
-		execute_child_mode0(fds[0], pipefd, argv[2], envp);
+    {
+        if (BONUS == 1)
+            execute_child_mode0(fds[0], pipefd, argv[3], envp);
+        else
+            execute_child_mode0(fds[0], pipefd, argv[2], envp);
+    }
 	pids[1] = process_fork();
 	if (pids[1] == 0)
 	{
-		execute_child_mode1(fds[1], pipefd, argv[3], envp);
+        if (BONUS == 1)
+            execute_child_mode1(fds[1], pipefd, argv[4], envp);
+        else
+            execute_child_mode1(fds[1], pipefd, argv[3], envp);
 	}
 	handle_parent_process(pipefd, fds, pids[0], pids[1]);
 }
@@ -80,12 +91,22 @@ int	main(int argc, char **argv, char **envp)
 	char	*error;
 
 	error = "Uso: ./pipex archivo1 comando1 comando2 archivo2";
-	if (argc != 5 || (argc != 6 && BONUS != 1 && ft_strncmp(argv[1], "here_doc", 9) != 0))
+
+	if (BONUS == 1 && (argc != 6 || ft_strncmp(argv[1], "heredoc", 7) != 0))
 	{
-        printf("BONUS = %d", BONUS);
+		printf("BONUS = %d", BONUS);
+		ft_printf("AAAAAAAAAAA\n", error);
+		return (1);
+	}
+    else if (argc != 5 && argc != 6)
+	{
+		printf("BONUS = %d", BONUS);
 		ft_printf("%s\n", error);
 		return (1);
 	}
+	if (ft_strncmp(argv[1], "here_doc", 9) != 0) 
+		ft_printf("ALOLOLLSLSD\n");
+
 	handle_pipe(argv, envp);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 19:41:29 by slegaris          #+#    #+#              #
-#    Updated: 2023/09/15 03:07:18 by slegaris         ###   ########.fr        #
+#    Updated: 2024/06/19 20:14:27 by slegaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,9 @@ SRC =	ft_strlen.c\
 	ft_putnbrhex_mayus_p.c\
 	ft_putnbrhex_minus_p.c\
 	ft_putptr_p.c\
-	ft_putstr_p.c
+	ft_putstr_p.c\
+	get_next_line.c\
+	get_next_line_utils.c
 
 OBJ = $(SRC:.c=.o)
 
