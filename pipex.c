@@ -6,7 +6,7 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2024/06/24 10:48:48 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:26:47 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ int	main(int argc, char **argv, char **envp)
 	if ((BONUS == 1 && (argc != 6 || ft_strncmp(argv[1], "heredoc", 7) != 0))
 		|| (BONUS != 1 && argc != 5))
 	{
-		printf("BONUS = %d\n", BONUS);
-		printf("%s\n", error);
+		ft_printf("%s\n", error);
 		return (1);
 	}
 	handle_pipe(argv, envp);
