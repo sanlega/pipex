@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 00:09:11 by slegaris          #+#    #+#             */
-/*   Updated: 2024/06/19 21:06:30 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/24 10:41:06 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,8 @@ char				*ft_read_to_left_str(int fd, char *left_str);
 char				*ft_get_line(char *left_str);
 char				*ft_new_left_str(char *left_str);
 size_t				ft_line_length(const char *str);
-size_t	ft_strlen_gnl(char *s);
-char	*ft_strchr_gnl(char *s, int c);
-char	*ft_strjoin_gnl(char *left_str, char *buff);
-
+size_t				ft_strlen_g(char *s);
+char				*ft_strchr_gnl(char *s, int c);
+char				*ft_strjoin_gnl(char *left_str, char *buff);
 
 #endif

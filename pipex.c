@@ -6,15 +6,12 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 05:44:49 by slegaris          #+#    #+#             */
-/*   Updated: 2024/06/19 22:28:08 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/24 10:48:48 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft/libft.h"
-
-
-#include <stdio.h>
 
 void	execute_child_mode0(int fd, int *pipefd, char *command, char **envp)
 {
@@ -63,25 +60,22 @@ void	handle_pipe(char **argv, char **envp)
 	int		fds[2];
 
 	init_fds(argv[1], argv[4], fds, argv);
-
-    printf("here: %d", fds[0]);
-
 	init_pipe(pipefd);
 	pids[0] = process_fork();
 	if (pids[0] == 0)
-    {
-        if (BONUS == 1)
-            execute_child_mode0(fds[0], pipefd, argv[3], envp);
-        else
-            execute_child_mode0(fds[0], pipefd, argv[2], envp);
-    }
+	{
+		if (BONUS == 1)
+			execute_child_mode0(fds[0], pipefd, argv[3], envp);
+		else
+			execute_child_mode0(fds[0], pipefd, argv[2], envp);
+	}
 	pids[1] = process_fork();
 	if (pids[1] == 0)
 	{
-        if (BONUS == 1)
-            execute_child_mode1(fds[1], pipefd, argv[4], envp);
-        else
-            execute_child_mode1(fds[1], pipefd, argv[3], envp);
+		if (BONUS == 1)
+			execute_child_mode1(fds[1], pipefd, argv[4], envp);
+		else
+			execute_child_mode1(fds[1], pipefd, argv[3], envp);
 	}
 	handle_parent_process(pipefd, fds, pids[0], pids[1]);
 }
@@ -90,23 +84,16 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*error;
 
-	error = "Uso: ./pipex archivo1 comando1 comando2 archivo2";
-
-	if (BONUS == 1 && (argc != 6 || ft_strncmp(argv[1], "heredoc", 7) != 0))
+	error = "Usage: ./pipex file1 command1 command2 file2";
+	if ((BONUS == 1 && (argc != 6 || ft_strncmp(argv[1], "heredoc", 7) != 0))
+		|| (BONUS != 1 && argc != 5))
 	{
-		printf("BONUS = %d", BONUS);
-		ft_printf("AAAAAAAAAAA\n", error);
+		printf("BONUS = %d\n", BONUS);
+		printf("%s\n", error);
 		return (1);
 	}
-    else if (argc != 5 && argc != 6)
-	{
-		printf("BONUS = %d", BONUS);
-		ft_printf("%s\n", error);
-		return (1);
-	}
-	if (ft_strncmp(argv[1], "here_doc", 9) != 0) 
-		ft_printf("ALOLOLLSLSD\n");
-
 	handle_pipe(argv, envp);
+	if (BONUS == 1 && argc == 6 && ft_strncmp(argv[1], "heredoc", 7) == 0)
+		unlink(".heredoc");
 	return (0);
 }

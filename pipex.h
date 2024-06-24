@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 04:45:56 by slegaris          #+#    #+#             */
-/*   Updated: 2024/06/19 20:49:50 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/24 11:00:48 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ char	*esejoint(char *str1, char *str2);
 char	**esesplit(char *str, char c);
 char	*esesubstr(char *s, int start, size_t len);
 void	ft_error(char *str);
+void	normal_open_fds(int *fds, char *file1, char *file2);
 
 #endif

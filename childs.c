@@ -6,7 +6,7 @@
 /*   By: slegaris <slegaris@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:54:12 by slegaris          #+#    #+#             */
-/*   Updated: 2024/06/19 21:40:35 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/24 11:00:29 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,10 @@ void	child_process(int pipefd[2], char *command, int mode, char **env)
 	free(args);
 	perror("execve");
 	exit(errno);
+}
+
+void	normal_open_fds(int *fds, char *file1, char *file2)
+{
+	fds[0] = open(file1, O_RDONLY);
+	fds[1] = open(file2, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 }
