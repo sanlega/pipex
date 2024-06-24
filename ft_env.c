@@ -6,7 +6,7 @@
 /*   By: sanlega <sanlega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:54:17 by slegaris          #+#    #+#             */
-/*   Updated: 2023/10/02 23:29:12 by slegaris         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:09:52 by slegaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_check_command_path(char *cmd, char **cmd_parts, char **envp)
 	char	*result;
 
 	if (ft_get_path_var(envp) != 0)
-			result = ft_check_path(ft_get_path_var(envp), cmd_parts[0], cmd);
+		result = ft_check_path(ft_get_path_var(envp), cmd_parts[0], cmd);
 	if (is_absolute(&cmd[0]) == 0)
 	{
 		if (result)
